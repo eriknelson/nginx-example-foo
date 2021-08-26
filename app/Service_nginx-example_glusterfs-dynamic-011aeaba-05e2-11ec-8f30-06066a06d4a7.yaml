@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: "2021-08-25T20:21:26Z"
+  labels:
+    gluster.kubernetes.io/provisioned-for-pvc: nginx-logs
+  name: glusterfs-dynamic-011aeaba-05e2-11ec-8f30-06066a06d4a7
+  namespace: nginx-example-foo
+  resourceVersion: "50759"
+  selfLink: /api/v1/namespaces/nginx-example/services/glusterfs-dynamic-011aeaba-05e2-11ec-8f30-06066a06d4a7
+  uid: 060d8ae0-05e2-11ec-8f30-06066a06d4a7
+spec:
+  ports:
+  - port: 1
+    protocol: TCP
+    targetPort: 1
+  sessionAffinity: None
+  type: ClusterIP

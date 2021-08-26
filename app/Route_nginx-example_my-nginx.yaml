@@ -1,0 +1,20 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  creationTimestamp: "2021-08-25T20:21:18Z"
+  labels:
+    app: nginx
+    service: my-nginx
+  name: my-nginx
+  namespace: nginx-example-foo
+  resourceVersion: "50729"
+  selfLink: /apis/route.openshift.io/v1/namespaces/nginx-example/routes/my-nginx
+  uid: 014589ad-05e2-11ec-8f30-06066a06d4a7
+spec:
+  port:
+    targetPort: 8081
+  to:
+    kind: Service
+    name: my-nginx
+    weight: 100
+  wildcardPolicy: None

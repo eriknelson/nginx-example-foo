@@ -1,0 +1,52 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  creationTimestamp: "2021-08-25T20:22:09Z"
+  generation: 6
+  labels:
+    app: nginx
+  name: nginx-deployment
+  namespace: nginx-example-foo
+  resourceVersion: "66969"
+  selfLink: /apis/extensions/v1beta1/namespaces/nginx-example/deployments/nginx-deployment
+  uid: 1f9f627f-05e2-11ec-8f30-06066a06d4a7
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 0
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: nginx
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - image: quay.io/eriknelson/openshift-nginx
+        imagePullPolicy: Always
+        name: nginx
+        ports:
+        - containerPort: 8081
+          protocol: TCP
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /var/log/nginx
+          name: nginx-logs
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+      volumes:
+      - name: nginx-logs
+        persistentVolumeClaim:
+          claimName: nginx-logs
